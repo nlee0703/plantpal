@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="green_primary">#88D68C</color>
+    <color name="green_on_primary">#00390A</color>
+    <color name="green_container">#1F5323</color>
+    <color name="green_on_container">#C8E6C9</color>
+    <color name="leaf_secondary">#B9CCB4</color>
+    <color name="leaf_secondary_container">#3B4B38</color>
+    <color name="leaf_on_secondary_container">#D5E8CF</color>
+    <color name="sky_tertiary">#A0CFD4</color>
+    <color name="sky_tertiary_container">#1F4D52</color>
+    <color name="sky_on_tertiary_container">#BCEBF0</color>
+    <color name="surface">#10140F</color>
+    <color name="surface_container">#1D211B</color>
+    <color name="on_surface">#E0E4DA</color>
+    <color name="on_surface_variant">#C2C8BD</color>
+
+    <color name="status_overdue_fg">#FFB4AB</color>
+    <color name="status_overdue_bg">#601410</color>
+    <color name="status_due_fg">#FFB95C</color>
+    <color name="status_due_bg">#4A2800</color>
+    <color name="status_ok_fg">#A5D6A7</color>
+    <color name="status_ok_bg">#1E3A1F</color>
+    <color name="status_rain_fg">#AECBFF</color>
+    <color name="status_rain_bg">#0F2E5C</color>
+</resources>

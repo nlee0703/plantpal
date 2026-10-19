@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PlantPal</string>
+
+    <!-- Navigation -->
+    <string name="nav_plants">My Plants</string>
+    <string name="nav_weather">Weather</string>
+    <string name="nav_settings">Settings</string>
+    <string name="title_weather_tips">Weather Tips</string>
+    <string name="title_add_plant">Add plant</string>
+    <string name="title_edit_plant">Edit plant</string>
+    <string name="title_plant_detail">Plant</string>
+
+    <!-- Common -->
+    <string name="indoor">Indoor</string>
+    <string name="outdoor">Outdoor</string>
+    <string name="save">Save</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="refresh">Refresh</string>
+    <string name="search">Search</string>
+    <string name="today">Today</string>
+    <string name="temp_c">%1$d°C</string>
+    <string name="rain_mm">%1$.1f mm</string>
+
+    <!-- Status badges -->
+    <string name="status_due_today">Due today</string>
+    <string name="status_rain_skip">Rain today · skip</string>
+    <plurals name="status_overdue">
+        <item quantity="one">Overdue %1$d day</item>
+        <item quantity="other">Overdue %1$d days</item>
+    </plurals>
+    <plurals name="status_in_days">
+        <item quantity="one">In %1$d day</item>
+        <item quantity="other">In %1$d days</item>
+    </plurals>
+    <plurals name="meta_every_days">
+        <item quantity="one">%1$s · every day</item>
+        <item quantity="other">%1$s · every %2$d days</item>
+    </plurals>
+    <plurals name="every_days">
+        <item quantity="one">Every day</item>
+        <item quantity="other">Every %1$d days</item>
+    </plurals>
+    <plurals name="interval_days">
+        <item quantity="one">%1$d day</item>
+        <item quantity="other">%1$d days</item>
+    </plurals>
+
+    <!-- My Plants -->
+    <plurals name="summary_plants">
+        <item quantity="one">%1$d plant · %2$d need water</item>
+        <item quantity="other">%1$d plants · %2$d need water</item>
+    </plurals>
+    <string name="filter_all">All</string>
+    <string name="filter_due">Due today</string>
+    <string name="search_hint">Search plants by name</string>
+    <string name="empty_no_plants">No plants yet.\nTap + to add your first plant.</string>
+    <string name="empty_no_matches">No plants match this filter.</string>
+    <string name="add_plant">Add plant</string>
+    <string name="water">Water</string>
+    <string name="cd_water_plant">Mark %1$s as watered</string>
+    <string name="watered_message">%1$s watered. Next date updated.</string>
+    <string name="weather_unavailable">Weather unavailable</string>
+    <string name="weather_unavailable_hint">Check your connection, then tap for Weather Tips.</string>
+    <string name="banner_title">%1$s · %2$d°C · %3$s</string>
+    <string name="banner_rain">%1$.1f mm of rain today. Outdoor plants can skip watering.</string>
+    <string name="banner_no_rain">%1$.1f mm of rain today. Water outdoor plants as scheduled.</string>
+    <string name="banner_tips_off">Rain-aware tips are off. Turn them on in Settings.</string>
+    <string name="banner_offline_suffix">Offline · %1$s</string>
+
+    <!-- Add / Edit -->
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="cd_plant_photo">Plant photo</string>
+    <string name="plant_name">Plant name *</string>
+    <string name="species">Species (optional)</string>
+    <string name="location">Location</string>
+    <string name="water_every">Water every</string>
+    <string name="cd_decrease">Fewer days</string>
+    <string name="cd_increase">More days</string>
+    <string name="last_watered">Last watered</string>
+    <string name="notes">Notes (light, soil, etc.)</string>
+    <string name="error_name_required">Please enter a name for the plant</string>
+    <string name="saved_message">%1$s saved</string>
+    <string name="no_camera_app">No camera app is available on this device</string>
+    <string name="photo_failed">Couldn\'t load that photo</string>
+
+    <!-- Detail -->
+    <string name="next_watering">Next watering</string>
+    <string name="interval">Interval</string>
+    <string name="mark_watered">Mark as watered</string>
+    <string name="watered_short">Watering logged</string>
+    <string name="care_history">Care history</string>
+    <string name="history_empty">No care logged yet.</string>
+    <string name="species_unknown">Species not set</string>
+    <string name="log_watered">Watered</string>
+    <string name="log_skipped_rain">Skipped (rain)</string>
+    <string name="log_time_with_note">%1$s · %2$s</string>
+    <string name="delete_title">Delete %1$s?</string>
+    <string name="delete_message">This also deletes the plant\'s photo and care history. This can\'t be undone.</string>
+    <string name="deleted_message">%1$s deleted</string>
+
+    <!-- Weather -->
+    <string name="forecast_5_day">5-day forecast</string>
+    <string name="outdoor_tips">Outdoor plant tips</string>
+    <string name="updated_at">Updated %1$s</string>
+    <string name="offline_notice">You\'re offline. Showing the forecast saved %1$s.</string>
+    <string name="weather_error">Couldn\'t load the forecast.\nCheck your internet connection and tap Refresh.</string>
+    <string name="threshold_note">Highlighted days have at least %1$.1f mm of rain (your threshold).</string>
+    <string name="tips_off">Rain-aware tips are turned off in Settings.</string>
+    <string name="tips_empty">You have no outdoor plants yet.</string>
+    <string name="tip_skip_today">%1$.1f mm of rain today. Skip watering.</string>
+    <string name="tip_rain_not_due">%1$.1f mm of rain today. Not due yet anyway.</string>
+    <string name="tip_water_today">Due today and no heavy rain. Water as scheduled.</string>
+    <string name="tip_rain_coming">Rain expected %1$s (%2$.1f mm). You may be able to skip.</string>
+    <plurals name="tip_next_in">
+        <item quantity="one">Water as scheduled, in %1$d day.</item>
+        <item quantity="other">Water as scheduled, in %1$d days.</item>
+    </plurals>
+    <string name="log_rain_skip">Log rain skip</string>
+    <string name="skip_logged">Rain skip logged for %1$s</string>
+
+    <!-- Settings -->
+    <string name="section_location">Location</string>
+    <string name="section_reminders">Reminders</string>
+    <string name="section_weather">Weather</string>
+    <string name="section_about">About</string>
+    <string name="city">City</string>
+    <string name="saved_city">Saved city: %1$s</string>
+    <string name="choose_city">Choose your city</string>
+    <string name="city_saved">Weather will use %1$s</string>
+    <string name="error_city_short">Type at least 2 letters</string>
+    <string name="error_city_offline">Couldn\'t reach the weather service. Check your connection.</string>
+    <string name="error_city_none">No cities found for \"%1$s\"</string>
+    <string name="reminder_time">Daily reminder time</string>
+    <string name="notifications">Daily watering reminders</string>
+    <string name="notifications_hint">Prototype: your choice is saved here. The WorkManager reminder comes in the final build.</string>
+    <string name="notifications_denied">Notification permission denied. Reminders stay off.</string>
+    <string name="rain_tips">Rain-aware tips</string>
+    <string name="rain_tips_hint">Tell me when rain means outdoor plants can skip watering</string>
+    <string name="rain_threshold">Rain threshold (mm)</string>
+    <string name="error_threshold">Enter a number between 0 and 100</string>
+    <string name="about_text">PlantPal %1$s. COMP3074 prototype by Nicholas Lee (101303788).\nWeather data by Open-Meteo.com.</string>
+</resources>

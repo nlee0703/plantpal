@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Item ids match the destination ids in nav_graph.xml -->
+    <item
+        android:id="@+id/plantsFragment"
+        android:icon="@drawable/ic_nav_plants"
+        android:title="@string/nav_plants" />
+    <item
+        android:id="@+id/weatherFragment"
+        android:icon="@drawable/ic_nav_weather"
+        android:title="@string/nav_weather" />
+    <item
+        android:id="@+id/settingsFragment"
+        android:icon="@drawable/ic_nav_settings"
+        android:title="@string/nav_settings" />
+</menu>
