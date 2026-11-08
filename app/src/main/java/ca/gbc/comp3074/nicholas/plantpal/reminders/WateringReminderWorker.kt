@@ -94,7 +94,8 @@ class WateringReminderWorker(context: Context, params: WorkerParameters) :
             .setStyle(NotificationCompat.BigTextStyle().bigText(text))
             .setContentIntent(open)
             .setAutoCancel(true)
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setCategory(NotificationCompat.CATEGORY_REMINDER)
             .build()
         try {
             NotificationManagerCompat.from(applicationContext).notify(NOTIFICATION_ID, notification)
@@ -105,7 +106,10 @@ class WateringReminderWorker(context: Context, params: WorkerParameters) :
 
     companion object {
         const val KEY_TEST = "test"
-        const val CHANNEL_ID = "watering_reminders"
+        // High importance so the reminder pops up on screen. Android never raises the importance
+        // of an existing channel, so this uses a new ID and removes the old default-importance one.
+        const val CHANNEL_ID = "watering_reminders_high"
+        private const val OLD_CHANNEL_ID = "watering_reminders"
         private const val NOTIFICATION_ID = 1001
 
         fun canNotify(context: Context): Boolean =
@@ -120,9 +124,11 @@ class WateringReminderWorker(context: Context, params: WorkerParameters) :
             val channel = NotificationChannel(
                 CHANNEL_ID,
                 context.getString(R.string.reminder_channel_name),
-                NotificationManager.IMPORTANCE_DEFAULT
+                NotificationManager.IMPORTANCE_HIGH
             ).apply { description = context.getString(R.string.reminder_channel_description) }
-            context.getSystemService(NotificationManager::class.java).createNotificationChannel(channel)
+            val manager = context.getSystemService(NotificationManager::class.java)
+            manager.deleteNotificationChannel(OLD_CHANNEL_ID)
+            manager.createNotificationChannel(channel)
         }
     }
 }
