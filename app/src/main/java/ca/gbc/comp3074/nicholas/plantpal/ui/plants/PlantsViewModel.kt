@@ -45,9 +45,11 @@ class PlantsViewModel(app: Application) : AndroidViewModel(app) {
     val forecast: StateFlow<Forecast?> = _forecast.asStateFlow()
 
     init {
-        if (!settings.sampleDataSeeded) {
-            settings.sampleDataSeeded = true
-            viewModelScope.launch { repository.seedIfEmpty() }
+        val seed = !settings.sampleDataSeeded
+        settings.sampleDataSeeded = true
+        viewModelScope.launch {
+            if (seed) repository.seedIfEmpty()
+            repository.attachSamplePhotos()
         }
     }
 

@@ -1,6 +1,7 @@
 package ca.gbc.comp3074.nicholas.plantpal.data
 
 import ca.gbc.comp3074.nicholas.plantpal.util.DateUtils
+import ca.gbc.comp3074.nicholas.plantpal.util.SamplePhotos
 import kotlinx.coroutines.flow.Flow
 import java.io.File
 
@@ -23,7 +24,7 @@ class PlantRepository(
     /** Deletes the plant; its care logs go with it (ON DELETE CASCADE) and so does its photo. */
     suspend fun delete(plant: Plant) {
         plantDao.delete(plant)
-        plant.photoPath?.let { File(it).delete() }
+        plant.photoPath?.takeIf { !SamplePhotos.isBuiltIn(it) }?.let { File(it).delete() }
     }
 
     /** FR5: record a watering and restart the plant's schedule from now. */
@@ -61,10 +62,18 @@ class PlantRepository(
             Plant(name = "Lavender", species = "Lavandula", isOutdoor = true, intervalDays = 4,
                 lastWatered = DateUtils.addDays(now, -1))
         )
-        samples.forEach { p ->
+        samples.forEach { sample ->
+            val p = sample.copy(photoPath = SamplePhotos.forSampleName[sample.name])
             val id = plantDao.insert(p)
             careLogDao.insert(CareLog(plantId = id, type = CareLog.TYPE_WATERED, timestamp = p.lastWatered))
         }
+    }
+
+    /** Gives sample plants created by an earlier version (no photo) their pictures. */
+    suspend fun attachSamplePhotos() {
+        plantDao.getAll()
+            .filter { it.photoPath == null && it.name in SamplePhotos.forSampleName }
+            .forEach { plantDao.update(it.copy(photoPath = SamplePhotos.forSampleName[it.name])) }
     }
 
     /** Folder where plant photos are copied (app-private storage, FR2). */

@@ -12,6 +12,9 @@ interface PlantDao {
     @Query("SELECT * FROM plants ORDER BY name COLLATE NOCASE")
     fun observeAll(): Flow<List<Plant>>
 
+    @Query("SELECT * FROM plants")
+    suspend fun getAll(): List<Plant>
+
     @Query("SELECT * FROM plants WHERE id = :id")
     fun observe(id: Long): Flow<Plant?>
 

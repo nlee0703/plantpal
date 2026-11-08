@@ -5,7 +5,6 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.widget.ImageView
-import ca.gbc.comp3074.nicholas.plantpal.R
 import java.io.File
 import java.io.FileOutputStream
 
@@ -34,15 +33,18 @@ object PhotoStorage {
         null
     }
 
-    /** Shows the photo at [path], or the leaf placeholder when there is none. */
+    /**
+     * Shows the plant's picture: a saved photo, a built-in illustration ("res:" paths),
+     * or the generic potted plant when it has none, so every plant has an image.
+     */
     fun load(imageView: ImageView, path: String?) {
-        val bitmap = path?.takeIf { File(it).exists() }?.let { decodeSampled(it, 600) }
+        imageView.scaleType = ImageView.ScaleType.CENTER_CROP
+        val bitmap = path?.takeIf { !SamplePhotos.isBuiltIn(it) && File(it).exists() }
+            ?.let { decodeSampled(it, 600) }
         if (bitmap != null) {
-            imageView.scaleType = ImageView.ScaleType.CENTER_CROP
             imageView.setImageBitmap(bitmap)
         } else {
-            imageView.scaleType = ImageView.ScaleType.CENTER_INSIDE
-            imageView.setImageResource(R.drawable.ic_plant_placeholder)
+            imageView.setImageResource(SamplePhotos.drawableFor(path))
         }
     }
 

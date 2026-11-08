@@ -7,6 +7,7 @@ import androidx.lifecycle.SavedStateHandle
 import ca.gbc.comp3074.nicholas.plantpal.PlantPalApp
 import ca.gbc.comp3074.nicholas.plantpal.data.Plant
 import ca.gbc.comp3074.nicholas.plantpal.util.PhotoStorage
+import ca.gbc.comp3074.nicholas.plantpal.util.SamplePhotos
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.File
@@ -70,14 +71,16 @@ class AddEditPlantViewModel(app: Application, state: SavedStateHandle) : Android
         )
         repository.save(plant)
         // The old photo was replaced, so remove it from storage.
-        original?.photoPath?.let { old -> if (old != photoPath) File(old).delete() }
+        original?.photoPath
+            ?.takeIf { it != photoPath && !SamplePhotos.isBuiltIn(it) }
+            ?.let { File(it).delete() }
         original = plant
     }
 
     /** Deletes a photo the user picked but never saved. */
     private fun discardUnsavedPhoto() {
         val current = photoPath ?: return
-        if (current != original?.photoPath) File(current).delete()
+        if (current != original?.photoPath && !SamplePhotos.isBuiltIn(current)) File(current).delete()
     }
 
     fun cancel() = discardUnsavedPhoto()
