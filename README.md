@@ -16,13 +16,15 @@ skip watering.
 | **Add / Edit Plant** | Name (required, validated), species, Indoor/Outdoor toggle, watering interval stepper (1–60 days), last-watered date picker, notes, photo from camera or gallery | FR1, FR2, FR4 |
 | **Plant Detail** | Photo header, next-watering card, **Mark as watered**, care history (newest first), Edit, Delete with confirmation | FR4, FR5, FR8 |
 | **Weather Tips** | Current conditions, 5-day forecast with rainy days highlighted, a tip for each outdoor plant, **Log rain skip**, offline mode using the last saved forecast | FR7 |
-| **Settings** | City search (Open-Meteo Geocoding), reminder time, notification switch (asks for permission on Android 13+), rain-aware tips switch, rain threshold | FR9 |
+| **Settings** | City search (Open-Meteo Geocoding), reminder time, notification switch (asks for permission on Android 13+), **Send test reminder**, rain-aware tips switch, rain threshold | FR6, FR9 |
 
 On first launch the app adds five sample plants so every status can be shown right away.
 The default city is Toronto.
 
-**Planned for the final build:** the daily WorkManager notification (FR6). Its settings are
-already saved in this prototype.
+**Daily reminder (FR6).** WorkManager runs once a day at the reminder time and posts a notification
+listing every plant that is due or overdue. When rain-aware tips are on and today's rain reaches the
+threshold, it adds a line saying outdoor plants can skip watering. Changing the time or the switch in
+Settings reschedules or cancels it, and **Send test reminder** shows the notification right away.
 
 ## Architecture
 
@@ -31,6 +33,7 @@ already saved in this prototype.
 * **MVVM.** Each screen is a Fragment (view binding) backed by a ViewModel that exposes
   `StateFlow`s. The Fragments only render state and forward clicks.
 * **Room** (`plants` and `care_logs` tables, cascade delete) behind `PlantRepository`.
+* **WorkManager** (`ReminderScheduler`, `WateringReminderWorker`) for the daily reminder.
 * **SharedPreferences** (`SettingsStore`) for settings and the cached forecast.
 * **Open-Meteo** forecast and geocoding APIs (`WeatherRepository`) using `HttpURLConnection` and
   coroutines. No API key is needed.
@@ -40,6 +43,7 @@ app/src/main/java/ca/gbc/comp3074/nicholas/plantpal/
 ├── MainActivity.kt, PlantPalApp.kt
 ├── data/      Plant, CareLog, DAOs, AppDatabase, PlantRepository, SettingsStore
 ├── weather/   WeatherRepository, Forecast models, weather-code mapping
+├── reminders/ ReminderScheduler, WateringReminderWorker (FR6)
 ├── ui/        plants/, edit/, detail/, weather/, settings/  (Fragment + ViewModel each)
 └── util/      DateUtils, PlantStatus, PhotoStorage
 ```

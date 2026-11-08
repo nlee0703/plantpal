@@ -135,7 +135,23 @@
     <string name="error_city_none">No cities found for \"%1$s\"</string>
     <string name="reminder_time">Daily reminder time</string>
     <string name="notifications">Daily watering reminders</string>
-    <string name="notifications_hint">Prototype: your choice is saved here. The WorkManager reminder comes in the final build.</string>
+    <string name="notifications_hint">Once a day at the time above, PlantPal lists the plants that need water.</string>
+    <string name="test_reminder">Send test reminder</string>
+    <string name="test_reminder_sent">Test reminder sent. Check your notifications.</string>
+    <string name="reminder_channel_name">Watering reminders</string>
+    <string name="reminder_channel_description">Daily list of plants that need water</string>
+    <plurals name="reminder_title">
+        <item quantity="one">%d plant needs water</item>
+        <item quantity="other">%d plants need water</item>
+    </plurals>
+    <string name="reminder_line_due">%1$s: due today</string>
+    <plurals name="reminder_line_overdue">
+        <item quantity="one">%1$s: %2$d day overdue</item>
+        <item quantity="other">%1$s: %2$d days overdue</item>
+    </plurals>
+    <string name="reminder_rain_line">Rain today (%1$s mm): outdoor plants can skip watering.</string>
+    <string name="reminder_none_title">All plants are watered</string>
+    <string name="reminder_none_text">Nothing needs water today.</string>
     <string name="notifications_denied">Notification permission denied. Reminders stay off.</string>
     <string name="rain_tips">Rain-aware tips</string>
     <string name="rain_tips_hint">Tell me when rain means outdoor plants can skip watering</string>

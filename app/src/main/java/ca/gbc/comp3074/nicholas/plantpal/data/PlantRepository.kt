@@ -18,6 +18,9 @@ class PlantRepository(
 
     suspend fun get(id: Long): Plant? = plantDao.get(id)
 
+    /** One-off snapshot of every plant, used by the daily reminder (FR6). */
+    suspend fun allPlants(): List<Plant> = plantDao.getAll()
+
     suspend fun save(plant: Plant): Long =
         if (plant.id == 0L) plantDao.insert(plant) else plantDao.update(plant).let { plant.id }
 

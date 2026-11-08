@@ -131,6 +131,16 @@
             android:textAppearance="?attr/textAppearanceBodySmall"
             android:textColor="?attr/colorOnSurfaceVariant" />
 
+        <!-- 4b. Send a reminder right away (for testing / demo) -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_test_reminder"
+            style="@style/Widget.Material3.Button.TonalButton.Icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/test_reminder"
+            app:icon="@drawable/ic_water_drop" />
+
         <!-- Weather -->
         <TextView
             style="@style/PlantPal.SectionHeader"

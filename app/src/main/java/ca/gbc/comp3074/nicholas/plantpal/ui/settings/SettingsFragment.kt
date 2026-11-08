@@ -19,6 +19,7 @@ import ca.gbc.comp3074.nicholas.plantpal.BuildConfigInfo
 import ca.gbc.comp3074.nicholas.plantpal.PlantPalApp
 import ca.gbc.comp3074.nicholas.plantpal.R
 import ca.gbc.comp3074.nicholas.plantpal.databinding.FragmentSettingsBinding
+import ca.gbc.comp3074.nicholas.plantpal.reminders.ReminderScheduler
 import ca.gbc.comp3074.nicholas.plantpal.util.DateUtils
 import ca.gbc.comp3074.nicholas.plantpal.weather.CityResult
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -38,6 +39,7 @@ class SettingsFragment : Fragment() {
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
             settings.notificationsEnabled = granted
             _binding?.switchNotifications?.isChecked = granted
+            updateReminderSchedule()
             if (!granted) {
                 Toast.makeText(requireContext(), R.string.notifications_denied, Toast.LENGTH_LONG).show()
             }
@@ -64,6 +66,16 @@ class SettingsFragment : Fragment() {
                 requestNotificationPermission.launch(Manifest.permission.POST_NOTIFICATIONS)
             } else {
                 settings.notificationsEnabled = checked
+                updateReminderSchedule()
+            }
+        }
+
+        binding.btnTestReminder.setOnClickListener {
+            if (needsNotificationPermission()) {
+                requestNotificationPermission.launch(Manifest.permission.POST_NOTIFICATIONS)
+            } else {
+                ReminderScheduler.sendTestNow(requireContext())
+                Toast.makeText(requireContext(), R.string.test_reminder_sent, Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -152,9 +164,14 @@ class SettingsFragment : Fragment() {
             settings.reminderHour = picker.hour
             settings.reminderMinute = picker.minute
             renderReminderTime()
+            updateReminderSchedule()
         }
         picker.show(childFragmentManager, "reminder_time")
     }
+
+    /** FR6: start, move or stop the daily WorkManager reminder to match the settings. */
+    private fun updateReminderSchedule() =
+        ReminderScheduler.apply(requireContext().applicationContext, settings, reschedule = true)
 
     private fun needsNotificationPermission(): Boolean =
         Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
